@@ -4,11 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Al-Soufi Ventures, LLC — Professional Paralegal Services</title>
-
   <meta name="description" content="Affordable, reliable, attorney-supervised immigration paralegal services. Forms I-485, I-130, I-360, VAWA, SIJ & more. Pittsburgh-based, nationwide."/>
-
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
     :root {
@@ -18,8 +20,8 @@
       --gray: #4b5563;
       --light: #f3f4f6;
       --white: #ffffff;
+      --overlay: rgba(0,0,0,0.6);
     }
-
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Roboto', sans-serif;
@@ -27,7 +29,6 @@
       color: #333;
       background: var(--light);
     }
-
     header {
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: white;
@@ -37,7 +38,6 @@
       z-index: 1000;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -45,22 +45,18 @@
       max-width: 1400px;
       margin: 0 auto;
     }
-
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.9rem;
       font-weight: 700;
       letter-spacing: 1px;
     }
-
     .logo span { color: var(--accent); }
-
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
-
     .nav-links a {
       color: white;
       text-decoration: none;
@@ -68,9 +64,7 @@
       font-size: 1.05rem;
       transition: color 0.3s;
     }
-
     .nav-links a:hover { color: var(--accent); }
-
     .cta-btn {
       background: var(--accent);
       color: var(--primary-dark);
@@ -79,21 +73,19 @@
       font-weight: 600;
       text-decoration: none;
       transition: all 0.3s;
+      cursor: pointer;
+      border: none;
     }
-
     .cta-btn:hover {
       background: #d97706;
       transform: scale(1.05);
     }
-
-    /* Mobile Menu Toggle */
     .menu-toggle {
       display: none;
       font-size: 1.8rem;
       cursor: pointer;
       color: white;
     }
-
     /* Hero */
     #hero {
       background: linear-gradient(rgba(30,58,138,0.85), rgba(23,37,84,0.92)),
@@ -102,27 +94,23 @@
       text-align: center;
       padding: 8rem 5% 6rem;
     }
-
     #hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.2rem, 6vw, 3.8rem);
       margin-bottom: 1rem;
       text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
     }
-
     #hero p {
       font-size: clamp(1.1rem, 3.5vw, 1.35rem);
       max-width: 720px;
       margin: 0 auto 2rem;
       font-weight: 300;
     }
-
     /* Services */
     #services {
       padding: 5rem 5%;
       background: white;
     }
-
     .section-title {
       text-align: center;
       font-family: 'Playfair Display', serif;
@@ -130,7 +118,6 @@
       margin-bottom: 2.5rem;
       color: var(--primary);
     }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -138,7 +125,6 @@
       max-width: 1400px;
       margin: 0 auto;
     }
-
     .service-card {
       background: white;
       border-radius: 12px;
@@ -146,11 +132,9 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.08);
       transition: transform 0.3s;
     }
-
     .service-card:hover {
       transform: translateY(-10px);
     }
-
     .service-card h3 {
       background: var(--primary);
       color: white;
@@ -158,19 +142,16 @@
       font-size: 1.35rem;
       text-align: center;
     }
-
     .service-card ul {
       padding: 1.5rem 1.8rem;
       list-style: none;
     }
-
     .service-card li {
       margin: 0.9rem 0;
       font-size: 1.05rem;
       position: relative;
       padding-left: 1.6rem;
     }
-
     .service-card li::before {
       content: "✔";
       color: var(--accent);
@@ -178,7 +159,6 @@
       left: 0;
       font-weight: bold;
     }
-
     /* Contact */
     #contact {
       background: var(--primary);
@@ -186,20 +166,16 @@
       text-align: center;
       padding: 6rem 5%;
     }
-
     #contact h2 { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 1.5rem; }
-
     .phone {
       font-size: clamp(2rem, 6vw, 2.6rem);
       font-weight: 700;
       margin: 1.5rem 0;
     }
-
     .phone a {
       color: var(--accent);
       text-decoration: none;
     }
-
     footer {
       background: #111827;
       color: #d1d5db;
@@ -207,15 +183,92 @@
       padding: 3rem 5%;
       font-size: 0.95rem;
     }
-
     footer a { color: var(--accent); text-decoration: none; }
 
-    /* Mobile-first media queries */
-    @media (max-width: 768px) {
-      header nav {
-        flex-wrap: wrap;
-      }
+    /* Popup Form Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--overlay);
+      overflow: auto;
+    }
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: fadeIn 0.4s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .close-btn {
+      color: var(--gray);
+      float: right;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-btn:hover { color: var(--primary); }
+    .modal h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    #submitBtn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+    #submitBtn:hover { background: var(--primary-dark); }
+    #formStatus {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    .success-msg { color: #155724; background: #d4edda; padding: 0.8rem; border-radius: 6px; }
+    .error-msg   { color: #721c24; background: #f8d7da; padding: 0.8rem; border-radius: 6px; }
 
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      header nav { flex-wrap: wrap; }
       .nav-links {
         display: none;
         flex-direction: column;
@@ -223,28 +276,12 @@
         text-align: center;
         margin-top: 1rem;
       }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      #hero {
-        padding: 6rem 5% 4rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-btn {
-        width: 100%;
-        text-align: center;
-        margin: 1rem 0;
-      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+      #hero { padding: 6rem 5% 4rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cta-btn { width: 100%; text-align: center; margin: 1rem 0; }
+      .modal-content { margin: 20% auto; padding: 1.5rem; }
     }
   </style>
 </head>
@@ -254,16 +291,13 @@
   <header>
     <nav>
       <div class="logo">The Al-Soufi <span>Ventures</span>, LLC</div>
-
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-
-      <a href="tel:6146643393" class="cta-btn">Call (614) 664-3393</a>
+      <button class="cta-btn" onclick="openModal()">Contact Us</button>
     </nav>
   </header>
 
@@ -271,16 +305,15 @@
   <section id="hero">
     <h1>Professional Paralegal Services You Can Trust</h1>
     <p>Affordable, accurate, attorney-supervised immigration support — helping families, survivors, and businesses across the United States.</p>
-    <a href="tel:6146643393" class="cta-btn">Free Consultation • (614) 664-3393</a>
+    <button class="cta-btn" onclick="openModal()">Free Consultation • (614) 664-3393</button>
   </section>
 
   <!-- Services -->
   <section id="services">
     <h2 class="section-title">Our Core Services</h2>
     <div class="services-grid">
-
       <div class="service-card">
-        <h3>USCIS Form Preparation</h3>
+        <h3>USCIS Case Filing</h3>
         <ul>
           <li>I-485 Adjustment of Status</li>
           <li>I-130 Petition for Alien Relative</li>
@@ -296,7 +329,7 @@
       <div class="service-card">
         <h3>Specialized Petitions</h3>
         <ul>
-          <li>VAWA self-petitions for survivors</li>
+          <li>VAWA self-petitions</li>
           <li>U-visa & T-visa applications</li>
           <li>Special Immigrant Juvenile (SIJ)</li>
           <li>Asylum & refugee adjustment</li>
@@ -339,13 +372,107 @@
     <p>&copy; 2026 The Al-Soufi Ventures, LLC. All services provided under attorney supervision. Not a law firm. No legal advice provided.</p>
     <p><a href="tel:6146643393">(614) 664-3393</a> • Nationwide Service</p>
   </footer>
+  <!-- Contact Form Popup Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="XXX-XXX-XXXX">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Brief Description of Your Case *</label>
+          <textarea id="description" name="description" rows="5" required placeholder="Please describe your immigration or legal matter..."></textarea>
+        </div>
+        <button type="submit" id="submitBtn">Submit Inquiry</button>
+        <div id="formStatus"></div>
+      </form>
+    </div>
+  </div>
 
   <script>
+    // EmailJS initialization (replace with your real keys)
+    (function() {
+      emailjs.init("pwq9-dXv18wer2hLJ"); // ← YOUR PUBLIC KEY
+    })();
+
+    const SERVICE_ID = "service_hltb7ca";
+    const TEMPLATE_ID = "template_o6q5qje";
+
+    // Popup functions
+    function openModal() {
+      document.getElementById("contactModal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("contactModal").style.display = "none";
+      document.getElementById("formStatus").innerHTML = "";
+      document.getElementById("contactForm").reset();
+    }
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById("contactModal");
+      if (event.target === modal) closeModal();
+    };
+    // Close with Esc key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") closeModal();
+    });
+
+    // Form submission with EmailJS
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const status = document.getElementById("formStatus");
+      status.innerHTML = "Sending...";
+      status.className = "";
+
+      const formData = new FormData(this);
+      const params = {
+        first_name: formData.get("firstName"),
+        last_name: formData.get("lastName"),
+        phone: formData.get("phone"),
+        email: formData.get("email"),
+        message: formData.get("description"),
+        from_name: formData.get("firstName") + " " + formData.get("lastName")
+      };
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
+        .then(() => {
+          status.innerHTML = "Thank you! Your inquiry has been sent successfully.";
+          status.className = "success-msg";
+          setTimeout(() => {
+            closeModal();
+          }, 3000);
+        })
+        .catch((err) => {
+          status.innerHTML = "Sorry, there was an error sending your message. Please call us at (614) 664-3393.";
+          status.className = "error-msg";
+          console.error("EmailJS error:", err);
+        });
+    });
     // Hamburger menu toggle for mobile
     function toggleMenu() {
       const links = document.getElementById('navLinks');
       links.classList.toggle('active');
     }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+      });
+    });
 
     // Close menu when clicking a link (mobile)
     document.querySelectorAll('.nav-links a').forEach(link => {
