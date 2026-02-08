@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Al-Soufi Ventures, LLC — Professional Paralegal Services</title>
-  <meta name="description" content="Affordable, reliable, attorney-supervised immigration paralegal services. Forms I-485, I-130, I-360, VAWA, SIJ & more. Pittsburgh-based, nationwide."/>
+  <meta name="description" content="Affordable, reliable, attorney-supervised immigration paralegal services. Forms I-485, I-130, I-360, VAWA, SIJ & more. Columbus, Ohio-based, nationwide."/>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Calendly widget script -->
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <style>
     :root {
@@ -44,7 +47,6 @@
       align-items: center;
       max-width: 1400px;
       margin: 0 auto;
-      
     }
     .logo {
       font-family: 'Playfair Display', serif;
@@ -64,6 +66,7 @@
       font-weight: 500;
       font-size: 1.05rem;
       transition: color 0.3s;
+      cursor: pointer;
     }
     .nav-links a:hover { color: var(--accent); }
     .cta-btn {
@@ -76,10 +79,19 @@
       transition: all 0.3s;
       cursor: pointer;
       border: none;
+      display: inline-block;
     }
     .cta-btn:hover {
       background: #d97706;
       transform: scale(1.05);
+    }
+    .cta-btn.secondary {
+      background: white;
+      color: var(--primary-dark);
+      margin-left: 0.5rem;
+    }
+    .cta-btn.secondary:hover {
+      background: #f3f4f6;
     }
     .menu-toggle {
       display: none;
@@ -87,13 +99,14 @@
       cursor: pointer;
       color: white;
     }
+    
     /* Hero */
     #hero {
       background: linear-gradient(rgba(30,58,138,0.85), rgba(23,37,84,0.92)),
                   url('https://images.unsplash.com/photo-1589829545856-d10d7d9f7f6a?auto=format&fit=crop&q=80') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 8rem 5% 6rem;
+      padding: 6rem 5% 4rem;
     }
     #hero h1 {
       font-family: 'Playfair Display', serif;
@@ -107,10 +120,60 @@
       margin: 0 auto 2rem;
       font-weight: 300;
     }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    
+    /* About Section */
+    #about {
+      padding: 4rem 5%;
+      background: white;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    #about p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    .profile-img {
+      flex-shrink: 0;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--accent);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
     /* Services */
     #services {
       padding: 5rem 5%;
-      background: white;
+      background: var(--light);
     }
     .section-title {
       text-align: center;
@@ -160,33 +223,101 @@
       left: 0;
       font-weight: bold;
     }
+    
     /* Contact */
     #contact {
       background: var(--primary);
       color: white;
       text-align: center;
-      padding: 6rem 5%;
+      padding: 5rem 5%;
     }
-    #contact h2 { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 1.5rem; }
+    #contact h2 { 
+      font-size: clamp(2rem, 5vw, 2.8rem); 
+      margin-bottom: 1.5rem; 
+    }
+    #contact p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .contact-options {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .contact-option {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      min-width: 250px;
+    }
+    .contact-option h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
     .phone {
-      font-size: clamp(2rem, 6vw, 2.6rem);
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
       font-weight: 700;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
     }
     .phone a {
       color: var(--accent);
       text-decoration: none;
     }
+    
+    /* Calendly Widget */
+    #scheduling {
+      padding: 3rem 5%;
+      background: white;
+      text-align: center;
+    }
+    #scheduling h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 700px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      margin: 0 auto;
+    }
+    
+    /* Footer & Disclaimer */
+    .disclaimer {
+      background: #f8f9fa;
+      padding: 2rem 5%;
+      text-align: center;
+      border-top: 1px solid #dee2e6;
+    }
+    .disclaimer p {
+      font-size: 0.9rem;
+      color: #555;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .disclaimer strong {
+      color: var(--primary);
+    }
     footer {
       background: #111827;
       color: #d1d5db;
       text-align: center;
-      padding: 3rem 5%;
+      padding: 2rem 5%;
       font-size: 0.95rem;
     }
-    footer a { color: var(--accent); text-decoration: none; }
-
-    /* Popup Form Styles */
+    footer a { 
+      color: var(--accent); 
+      text-decoration: none; 
+    }
+    
+    /* Modal styles remain the same */
     .modal {
       display: none;
       position: fixed;
@@ -266,7 +397,7 @@
     }
     .success-msg { color: #155724; background: #d4edda; padding: 0.8rem; border-radius: 6px; }
     .error-msg   { color: #721c24; background: #f8d7da; padding: 0.8rem; border-radius: 6px; }
-
+    
     /* Mobile adjustments */
     @media (max-width: 768px) {
       header nav { flex-wrap: wrap; }
@@ -279,41 +410,76 @@
       }
       .nav-links.active { display: flex; }
       .menu-toggle { display: block; }
-      #hero { padding: 6rem 5% 4rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .cta-btn { width: 100%; text-align: center; margin: 1rem 0; }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-buttons .cta-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .profile-img {
+        width: 200px;
+        height: 200px;
+      }
+      .contact-options {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-option {
+        width: 100%;
+        max-width: 300px;
+      }
       .modal-content { margin: 20% auto; padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header with Sticky Navigation -->
   <header>
     <nav>
-      <div class="logo">Professional <span>Paralegal Services</span>, LLC</div>
+      <div class="logo">The Al-Soufi <span>Ventures</span>, LLC</div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a onclick="openModal()">Contact</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#scheduling">Schedule</a></li>
       </ul>
       <button class="cta-btn" onclick="openModal()">Contact Us</button>
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section id="hero">
     <h1>Professional Paralegal Services You Can Trust</h1>
     <p>Affordable, accurate, attorney-supervised immigration support — helping families, survivors, and businesses across the United States.</p>
-    <button class="cta-btn" onclick="openModal()">Free Consultation • (614) 664-3393</button>
-    <!-- Find the existing hero CTA button and add the new one below it -->
-
-<!-- ADD THIS NEW BUTTON AND PARAGRAPH RIGHT AFTER THE PREVIOUS LINE -->
-<br><br>
+    <div class="hero-buttons">
+      <a href="#scheduling" class="cta-btn">Book Free Consultation</a>
+      <button class="cta-btn secondary" onclick="openModal()">Contact Form</button>
+    </div>
   </section>
 
-  <!-- Services -->
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Our Practice</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>I am <strong>Mohammad Al-Soufi</strong>, founder of The Al-Soufi Ventures, LLC. With over 5 years of dedicated experience in U.S. immigration law support, I am committed to providing precise, reliable, and compassionate paralegal services. My practice operates under the direct supervision of a licensed attorney, ensuring all work meets the highest professional standards.</p>
+        <p>I specialize in guiding families, individuals, and businesses through complex processes like VAWA, SIJ, employment-based petitions, and adjustment of status—turning daunting paperwork into a clear, manageable path forward.</p>
+      </div>
+      <!-- Add your professional photo here -->
+      <!-- <img src="your-photo.jpg" alt="Mohammad Al-Soufi" class="profile-img"> -->
+    </div>
+  </section>
+
+  <!-- Services Section -->
   <section id="services">
     <h2 class="section-title">Our Core Services</h2>
     <div class="services-grid">
@@ -356,36 +522,63 @@
           <li>Secure online client portal</li>
         </ul>
       </div>
-
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact Section -->
   <section id="contact">
     <h2>Ready to Begin?</h2>
-    <p style="font-size:1.3rem; max-width:700px; margin:0 auto 2rem;">
-      Call today for a free 15-minute consultation or book a 30 minute meeting below. We make the immigration process clear and stress-free.
-    </p>
-    <div class="phone">
-      <a href="tel:6146643393">(614) 664-3393</a>
+    <p>Call today for a free 15-minute consultation or schedule online. We make the immigration process clear and stress-free.</p>
+    
+    <div class="contact-options">
+      <div class="contact-option">
+        <h3>Call Us</h3>
+        <div class="phone">
+          <a href="tel:6146643393">(614) 664-3393</a>
+        </div>
+        <p>Available during business hours</p>
+      </div>
+      
+      <div class="contact-option">
+        <h3>Schedule Online</h3>
+        <p>Book a 30-minute consultation at your convenience</p>
+        <a href="#scheduling" class="cta-btn">View Calendar</a>
+      </div>
+      
+      <div class="contact-option">
+        <h3>Send Message</h3>
+        <p>Prefer to write? Use our contact form</p>
+        <button class="cta-btn" onclick="openModal()">Contact Form</button>
+      </div>
     </div>
-    <p style="margin-top:1.5rem;">Columbus, Ohio Metropolitan Area • Serving clients nationwide</p>
-    <!-- Find the phone number div and add the new button after it -->
-
+    
+    <p style="margin-top:2rem;">Columbus, Ohio Metropolitan Area • Serving clients nationwide</p>
   </section>
-<p style="font-size: 1.3rem; max-width: 700px; margin: 0 auto 0.5rem; text-align: center; font-style: italic; font-weight: bold;">
-  Please make sure that you fill out the Contact Us form with all required information by clicking the "Contact Us" button above before scheduling your appointment.
-</p>
-<!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/thealsoufi-venturesllc/30min" style="min-width:320px;height:700px; margin-top: 0;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
+
+  <!-- Scheduling Section -->
+  <section id="scheduling">
+    <h2>Schedule Your Consultation</h2>
+    <p style="margin-bottom:2rem;">Select a convenient time for your 30-minute consultation below.</p>
+    
+    <!-- Calendly inline widget -->
+    <div class="calendly-inline-widget" 
+         data-url="https://calendly.com/thealsoufi-venturesllc/30min"
+         style="min-width:320px;height:700px;">
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    <p><strong>Important Disclaimer</strong>: The Al-Soufi Ventures, LLC is a professional paralegal service provider and is not a law firm. I am not an attorney. Services are provided under the supervision of a licensed attorney. This website and our consultations do not provide legal advice. For legal advice specific to your situation, please consult with a qualified immigration attorney.</p>
+  </div>
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 The Al-Soufi Ventures, LLC. All services provided under attorney supervision. Not a law firm. No legal advice provided.</p>
-    <p><a href="tel:6146643393">(614) 664-3393</a> • Nationwide Service</p>
+    <p><a href="tel:6146643393">(614) 664-3393</a> • Serving clients nationwide</p>
   </footer>
-  <!-- Contact Form Popup Modal -->
+
+  <!-- Contact Form Modal -->
   <div id="contactModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -418,28 +611,31 @@
   </div>
 
   <script>
-    // EmailJS initialization (replace with your real keys)
+    // EmailJS initialization
     (function() {
-      emailjs.init("pwq9-dXv18wer2hLJ"); // ← YOUR PUBLIC KEY
+      emailjs.init("pwq9-dXv18wer2hLJ");
     })();
 
     const SERVICE_ID = "service_hltb7ca";
     const TEMPLATE_ID = "template_o6q5qje";
 
-    // Popup functions
+    // Modal functions
     function openModal() {
       document.getElementById("contactModal").style.display = "block";
     }
+    
     function closeModal() {
       document.getElementById("contactModal").style.display = "none";
       document.getElementById("formStatus").innerHTML = "";
       document.getElementById("contactForm").reset();
     }
+
     // Close modal when clicking outside
     window.onclick = function(event) {
       const modal = document.getElementById("contactModal");
       if (event.target === modal) closeModal();
     };
+
     // Close with Esc key
     document.addEventListener('keydown', function(e) {
       if (e.key === "Escape") closeModal();
@@ -476,33 +672,37 @@
           console.error("EmailJS error:", err);
         });
     });
-    // Hamburger menu toggle for mobile
+
+    // Mobile menu toggle
     function toggleMenu() {
       const links = document.getElementById('navLinks');
       links.classList.toggle('active');
     }
+
+    // Close mobile menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         document.getElementById('navLinks').classList.remove('active');
       });
     });
 
-    // Close menu when clicking a link (mobile)
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('active');
-      });
-    });
-
-    // Optional: Track phone clicks (for your own analytics later)
-    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-      link.addEventListener('click', () => {
-        console.log("Phone clicked:", link.href);
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if(this.getAttribute('href') === '#') return;
+        
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
       });
     });
   </script>
- 
 </body>
 </html>
-
-
