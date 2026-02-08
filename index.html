@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Al-Soufi Ventures, LLC — Professional Paralegal Services</title>
-  <meta name="description" content="Affordable, reliable, attorney-supervised immigration paralegal services. Forms I-485, I-130, I-360, VAWA, SIJ & more. Columbus, Ohio Metropolitan Area-based, Nationwide."/>
+  <meta name="description" content="Affordable, reliable, attorney-supervised immigration paralegal services. Forms I-485, I-130, I-360, VAWA, SIJ & more. Pittsburgh-based, nationwide."/>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
@@ -44,6 +44,7 @@
       align-items: center;
       max-width: 1400px;
       margin: 0 auto;
+      
     }
     .logo {
       font-family: 'Playfair Display', serif;
@@ -295,7 +296,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Home</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a onclick="openModal()">Contact</a></li>
       </ul>
       <button class="cta-btn" onclick="openModal()">Contact Us</button>
     </nav>
@@ -306,6 +307,10 @@
     <h1>Professional Paralegal Services You Can Trust</h1>
     <p>Affordable, accurate, attorney-supervised immigration support — helping families, survivors, and businesses across the United States.</p>
     <button class="cta-btn" onclick="openModal()">Free Consultation • (614) 664-3393</button>
+    <!-- Find the existing hero CTA button and add the new one below it -->
+
+<!-- ADD THIS NEW BUTTON AND PARAGRAPH RIGHT AFTER THE PREVIOUS LINE -->
+<br><br>
   </section>
 
   <!-- Services -->
@@ -359,14 +364,22 @@
   <section id="contact">
     <h2>Ready to Begin?</h2>
     <p style="font-size:1.3rem; max-width:700px; margin:0 auto 2rem;">
-      Call today for a free 15-minute consultation. We make the immigration process clear and stress-free.
+      Call today for a free 15-minute consultation or book a 30 minute meeting below. We make the immigration process clear and stress-free.
     </p>
     <div class="phone">
       <a href="tel:6146643393">(614) 664-3393</a>
     </div>
-    <p style="margin-top:1.5rem;">Columbus, Ohio Metropolitan Area • Serving clients Nationwide</p>
-  </section>
+    <p style="margin-top:1.5rem;">Columbus, Ohio Metropolitan Area • Serving clients nationwide</p>
+    <!-- Find the phone number div and add the new button after it -->
 
+  </section>
+<p style="font-size: 1.3rem; max-width: 700px; margin: 0 auto 0.5rem; text-align: center; font-style: italic; font-weight: bold;">
+  Please make sure that you fill out the Contact Us form with all required information by clicking the "Contact Us" button above before scheduling your appointment.
+</p>
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/thealsoufi-venturesllc/30min" style="min-width:320px;height:700px; margin-top: 0;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 The Al-Soufi Ventures, LLC. All services provided under attorney supervision. Not a law firm. No legal advice provided.</p>
@@ -488,7 +501,6 @@
       });
     });
   </script>
+ 
 </body>
 </html>
-
-
