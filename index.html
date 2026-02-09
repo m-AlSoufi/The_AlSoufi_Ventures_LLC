@@ -12,9 +12,6 @@
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <!-- Calendly widget script -->
-  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
   <style>
     :root {
       --primary: #1e3a8a;
@@ -267,27 +264,6 @@
       text-decoration: none;
     }
     
-    /* Calendly Widget */
-    #scheduling {
-      padding: 3rem 5%;
-      background: white;
-      text-align: center;
-    }
-    #scheduling h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.4rem);
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-    }
-    .calendly-inline-widget {
-      min-width: 320px;
-      height: 700px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      margin: 0 auto;
-    }
-    
     /* Footer & Disclaimer */
     .disclaimer {
       background: #f8f9fa;
@@ -443,14 +419,13 @@
   <!-- Header with Sticky Navigation -->
   <header>
     <nav>
-      <div class="logo">Professional <span>Paralegal Services </span>, LLC</div>
+      <div class="logo">The Al-Soufi <span>Ventures</span>, LLC</div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#scheduling">Schedule</a></li>
       </ul>
       <button class="cta-btn" onclick="openModal()">Contact Us</button>
     </nav>
@@ -461,8 +436,7 @@
     <h1>Professional Paralegal Services You Can Trust</h1>
     <p>Affordable, accurate, attorney-supervised immigration support — helping families, survivors, and businesses across the United States.</p>
     <div class="hero-buttons">
-      <a href="#scheduling" class="cta-btn">Book Free Consultation</a>
-      <button class="cta-btn secondary" onclick="openModal()">Contact Form</button>
+      <button class="cta-btn" onclick="openModal()">Book Free Consultation</button>
     </div>
   </section>
 
@@ -528,7 +502,7 @@
   <!-- Contact Section -->
   <section id="contact">
     <h2>Ready to Begin?</h2>
-    <p>Call today for a free 15-minute consultation or schedule online. We make the immigration process clear and stress-free.</p>
+    <p>Call today for a free 15-minute consultation. We make the immigration process clear and stress-free.</p>
     
     <div class="contact-options">
       <div class="contact-option">
@@ -540,12 +514,6 @@
       </div>
       
       <div class="contact-option">
-        <h3>Schedule Online</h3>
-        <p>Book a 30-minute consultation at your convenience</p>
-        <a href="#scheduling" class="cta-btn">View Calendar</a>
-      </div>
-      
-      <div class="contact-option">
         <h3>Send Message</h3>
         <p>Prefer to write? Use our contact form</p>
         <button class="cta-btn" onclick="openModal()">Contact Form</button>
@@ -553,17 +521,6 @@
     </div>
     
     <p style="margin-top:2rem;">Columbus, Ohio Metropolitan Area • Serving clients nationwide</p>
-  </section>
-
-  <!-- Scheduling Section -->
-  <section id="scheduling">
-    <h2>Schedule Your Consultation</h2>
-    <p style="margin-bottom:2rem;">Select a convenient time for your 30-minute consultation below.</p>
-    
-    <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/thealsoufi-venturesllc/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
   </section>
 
   <!-- Disclaimer -->
@@ -705,5 +662,3 @@
   </script>
 </body>
 </html>
-
-
