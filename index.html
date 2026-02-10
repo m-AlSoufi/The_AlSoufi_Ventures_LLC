@@ -11,7 +11,6 @@
 
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <img src="images/mohammad-profile.jpg" alt="Mohammad Al-Soufi" class="profile-img">
 
   <style>
     :root {
@@ -126,7 +125,7 @@
       margin-top: 2rem;
     }
     
-    /* About Section */
+    /* About Section - UPDATED for image on left */
     #about {
       padding: 4rem 5%;
       background: white;
@@ -137,26 +136,14 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.8rem, 4vw, 2.4rem);
       color: var(--primary);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
       text-align: center;
-    }
-    #about p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
     }
     .about-content {
       display: flex;
-      align-items: center;
+      align-items: flex-start;  /* Align items to top */
       gap: 3rem;
       flex-wrap: wrap;
-    }
-    .about-text {
-      flex: 1;
-      min-width: 300px;
     }
     .profile-img {
       flex-shrink: 0;
@@ -166,6 +153,16 @@
       object-fit: cover;
       border: 5px solid var(--accent);
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      order: -1; /* Makes image appear first (on left) */
+    }
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
     }
     
     /* Services */
@@ -400,8 +397,10 @@
         text-align: center;
       }
       .profile-img {
+        order: 0; /* Reset order for mobile */
         width: 200px;
         height: 200px;
+        margin: 0 auto 1.5rem; /* Center image on mobile */
       }
       .contact-options {
         flex-direction: column;
@@ -441,16 +440,17 @@
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About Section - FIXED with image on left -->
   <section id="about">
     <h2>About Our Practice</h2>
     <div class="about-content">
+      <!-- Image now appears first (on the left) -->
+      <img src="images/mohammad-profile.jpg" alt="Mohammad Al-Soufi" class="profile-img">
+      
       <div class="about-text">
         <p>I am <strong>Mohammad Al-Soufi</strong>, founder of The Al-Soufi Ventures, LLC. With over 5 years of dedicated experience in U.S. immigration law support, I am committed to providing precise, reliable, and compassionate paralegal services. My practice operates under the direct supervision of a licensed attorney, ensuring all work meets the highest professional standards.</p>
         <p>I specialize in guiding families, individuals, and businesses through complex processes like VAWA, SIJ, employment-based petitions, and adjustment of status—turning daunting paperwork into a clear, manageable path forward.</p>
       </div>
-      <!-- Add your professional photo here -->
-      <!-- <img src="your-photo.jpg" alt="Mohammad Al-Soufi" class="profile-img"> -->
     </div>
   </section>
 
@@ -663,5 +663,3 @@
   </script>
 </body>
 </html>
-
-
